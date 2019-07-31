@@ -19,7 +19,20 @@
           <a class="nav-link" [routerLink]="">Home</a>
         </li>
       </ul>
-      <form app-search></form>
+      <form class="form-inline my-2 my-lg-0">
+        <input
+          type="search"
+          class="form-control mr-sm-2"
+          placeholder="Search repository"
+          aria-label="Search repository"
+          aria-describedby="button-addon2"
+        />
+        <div class="input-group-append">
+          <button class="btn btn-light" type="button" id="button-addon2">
+            Search
+          </button>
+        </div>
+      </form>
     </div>
   </div>
 </nav>
