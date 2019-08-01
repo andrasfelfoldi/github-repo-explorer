@@ -1,6 +1,14 @@
 <div class="container">
-  <div *ngFor="let issue of issues" class="card">
-    <div class="card-header">
+  <div
+    *ngFor="let issue of issues"
+    class="card border"
+    [class.border-success]="issue.state === 'open'"
+    [class.border-danger]="issue.state === 'closed'"
+  >
+    <div
+      class="card-header bg-success text-light"
+      [class.bg-danger.text-light]="issue.state === 'closed'"
+    >
       {{ issue.title }}
     </div>
     <div class="card-body">

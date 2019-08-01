@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { GitHubService } from "../../services/git-hub.service";
+import { GitHubService } from "../../services/git-hub/git-hub.service";
 import { Issue } from "src/app/models/Issue";
 import { ActivatedRoute } from "@angular/router";
 
@@ -9,7 +9,7 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./issues.component.scss"]
 })
 export class IssuesComponent implements OnInit {
-  issues: Issue[];
+  issues: Issue[] = [];
   owner: string;
   repoName: string;
 
@@ -22,9 +22,12 @@ export class IssuesComponent implements OnInit {
     this.owner = this.route.snapshot.paramMap.get("owner");
     this.repoName = this.route.snapshot.paramMap.get("repoName");
 
-    this.issues = this.gitHubService.getIssuesForRepository(
-      this.owner,
-      this.repoName
-    );
+    this.gitHubService
+      .getIssuesForRepository(this.owner, this.repoName)
+      .subscribe((data: any) => {
+        data.items.forEach(issue => {
+          this.issues.push(issue);
+        });
+      });
   }
 }
