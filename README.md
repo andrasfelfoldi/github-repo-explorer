@@ -15,20 +15,18 @@ Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app w
 
 ## Running the application locally
 
-After the [initial setup](#initial_setup), run
+After the [initial setup](#initial-setup), navigate to the root folder of this project in your terminal and run `ng serve`. Open a browser tab at [http://localhost:4200/](http://localhost:4200/), where you can see the locally running application.
 
-## Build
+Alternatively, you can run the `ng serve --open` command that will automatically open the running app for you in a new browser window or tab.
+
+## Testing the application
+
+Run `ng test` in the root folder of this project to execute the unit tests via [Karma](https://karma-runner.github.io).
+
+There are no e2e (End-to-End) tests for this project currently.
+
+## Building the application
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+After building the application, you can use the contents of the `dist/` folder to host the app.
