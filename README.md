@@ -1,14 +1,21 @@
 # GithubRepoExplorer
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.1.3.
+This is an example project that lets you search for GitHub repositories to get some information about them and check out their issues.
 
-## Development server
+## Initial Setup
+
+0. Install all the necessary tools on your local machine if you don't already have them.
+   - Install [Git](https://git-scm.com/) to be able to pull this repository.
+   - Install the latest version of [Node.js](https://nodejs.org/), so you can install node modules using npm.
+1. Pull this repository by running `git clone git@github.com:andrasfelfoldi/github-repo-explorer.git`.
+1. Install [Angular CLI](https://cli.angular.io/) by running `npm install -g @angular/cli`.
+1. Navigate to the root folder of your local copy of this repository (the folder that contains the package.json file) in your terminal and run `npm install` or `npm i`;
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## Running the application locally
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+After the [initial setup](#initial_setup), run
 
 ## Build
 
