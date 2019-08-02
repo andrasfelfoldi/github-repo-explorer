@@ -11,6 +11,7 @@ import { SharedDataService } from "src/app/services/shared-data/shared-data.serv
 export class HomeComponent implements OnInit {
   repos: Repository[] = [];
   prevSearchTerm: string = "";
+  loading: boolean = true;
 
   constructor(
     private gitHubService: GitHubService,
@@ -24,9 +25,7 @@ export class HomeComponent implements OnInit {
   }
 
   getRepositories() {
-    console.log(this.prevSearchTerm);
-    console.log(this.sharedDataService.searchTerm);
-
+    this.loading = true;
     if (
       this.prevSearchTerm !== this.sharedDataService.searchTerm ||
       this.sharedDataService.repos.length === 0
@@ -49,9 +48,11 @@ export class HomeComponent implements OnInit {
             );
           });
 
+          this.loading = false;
           this.sharedDataService.repos = this.repos;
         });
     } else {
+      this.loading = false;
       this.repos = this.sharedDataService.repos;
     }
   }
