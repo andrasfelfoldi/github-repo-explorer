@@ -11,7 +11,7 @@ import { Subscriber, Subscription } from "rxjs";
 })
 export class HomeComponent implements OnInit {
   repos: Repository[] = [];
-  searchTerm: string = "";
+  // searchTerm: string = "";
   loading: boolean = false;
 
   searchTermChangedSubscription: Subscription;
@@ -22,12 +22,12 @@ export class HomeComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.searchTerm = this.sharedDataService.searchTerm
+    // this.searchTerm = this.sharedDataService.searchTerm
     this.repos = this.sharedDataService.repos;
 
     this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
       (newSearchTerm: string) => {
-        this.searchTerm = newSearchTerm;
+        // this.searchTerm = newSearchTerm;
         this.getRepositories();
       }
     );
@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit {
 
   getRepositories() {
     if (
-      this.searchTerm !== this.sharedDataService.prevSearchTerm ||
+      this.sharedDataService.searchTerm !== this.sharedDataService.prevSearchTerm ||
       this.sharedDataService.repos.length === 0
     ) {
       this.loading = true;
