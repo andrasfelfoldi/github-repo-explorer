@@ -13,6 +13,7 @@ export class IssuesComponent implements OnInit {
   issues: Issue[] = [];
   owner: string;
   repoName: string;
+  loading: boolean = true;
 
   constructor(
     private gitHubService: GitHubService,
@@ -28,6 +29,7 @@ export class IssuesComponent implements OnInit {
   }
 
   getIssues() {
+    this.loading = true;
     if (
       this.repoName !== this.sharedDataService.repoName ||
       this.owner !== this.sharedDataService.ownerName ||
@@ -43,9 +45,11 @@ export class IssuesComponent implements OnInit {
           this.sharedDataService.issues = this.issues;
           this.sharedDataService.repoName = this.repoName;
           this.sharedDataService.ownerName = this.owner;
+          this.loading = false;
         });
     } else {
       this.issues = this.sharedDataService.issues;
+      this.loading = false;
     }
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { GitHubService } from "../../services/git-hub/git-hub.service";
 import { Repository } from "src/app/models/Repository";
 import { SharedDataService } from "src/app/services/shared-data/shared-data.service";
+import { Subscriber, Subscription } from "rxjs";
 
 @Component({
   selector: "app-home",
@@ -10,26 +11,39 @@ import { SharedDataService } from "src/app/services/shared-data/shared-data.serv
 })
 export class HomeComponent implements OnInit {
   repos: Repository[] = [];
-  prevSearchTerm: string = "";
-  loading: boolean = true;
+  searchTerm: string = "";
+  loading: boolean = false;
+
+  searchTermChangedSubscription: Subscription;
 
   constructor(
     private gitHubService: GitHubService,
     private sharedDataService: SharedDataService
-  ) {
-    this.prevSearchTerm = this.sharedDataService.searchTerm;
-  }
+  ) { }
 
   ngOnInit() {
-    this.getRepositories();
+    this.searchTerm = this.sharedDataService.searchTerm
+    this.repos = this.sharedDataService.repos;
+
+    this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
+      (newSearchTerm: string) => {
+        this.searchTerm = newSearchTerm;
+        this.getRepositories();
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.searchTermChangedSubscription.unsubscribe();
   }
 
   getRepositories() {
-    this.loading = true;
     if (
-      this.prevSearchTerm !== this.sharedDataService.searchTerm ||
+      this.searchTerm !== this.sharedDataService.prevSearchTerm ||
       this.sharedDataService.repos.length === 0
     ) {
+      this.loading = true;
+      this.repos = [];
       this.gitHubService
         .getRepositoriesByName(this.sharedDataService.searchTerm)
         .subscribe((data: any) => {
