@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   repos: Repository[] = [];
   // searchTerm: string = "";
   loading: boolean = false;
+  // noReposFound: boolean = false;
+
 
   searchTermChangedSubscription: Subscription;
 
@@ -31,6 +33,7 @@ export class HomeComponent implements OnInit {
         this.getRepositories();
       }
     );
+    this.getRepositories();
   }
 
   ngOnDestroy(): void {
@@ -39,8 +42,9 @@ export class HomeComponent implements OnInit {
 
   getRepositories() {
     if (
-      this.sharedDataService.searchTerm !== this.sharedDataService.prevSearchTerm ||
-      this.sharedDataService.repos.length === 0
+      this.sharedDataService.searchTerm !== "" && (
+        this.sharedDataService.searchTerm !== this.sharedDataService.prevSearchTerm ||
+        this.sharedDataService.repos.length === 0)
     ) {
       this.loading = true;
       this.repos = [];
@@ -48,18 +52,7 @@ export class HomeComponent implements OnInit {
         .getRepositoriesByName(this.sharedDataService.searchTerm)
         .subscribe((data: any) => {
           data.items.forEach(repo => {
-            this.repos.push(
-              new Repository(
-                repo.name,
-                repo.description,
-                repo.owner.login,
-                repo.html_url,
-                repo.forks_count,
-                repo.stargazers_count,
-                repo.open_issues_count,
-                repo.issues_url
-              )
-            );
+            this.repos.push(repo)
           });
 
           this.loading = false;

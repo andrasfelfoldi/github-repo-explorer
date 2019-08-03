@@ -1,13 +1,17 @@
-.card-body {
-  a {
-    position: absolute;
-    bottom: 0px;
-    margin-bottom: 10px;
+  .bottom {
+    .counts{
+      display: flex;
+      flex-wrap: wrap;
+      span{
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    }
+    
+    a{
+      display: inline;
+    }
   }
-  .card-text {
-    margin-bottom: 40px;
-  }
-}
 
 .loading-container {
   width: 100%;

@@ -1,3 +1,6 @@
+<div *ngIf="repos.length === 0 && sharedDataService.searchTerm !== '' && !loading">
+  <app-zero-matches></app-zero-matches>
+</div>
 <div class="container">
   <div *ngIf="loading" class="loading-container">
     <div class="spinner-border text-primary" role="status">
@@ -9,13 +12,24 @@
       <div class="card" style="height: 100%">
         <div class="card-body">
           <h5 class="card-title">{{ repo.name }}</h5>
-          <h6 class="card-subtitle mb-2 text-muted">{{ repo.owner }}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">{{ repo.owner.login }}</h6>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <a class="" href="{{repo.html_url}}">{{repo.html_url}}</a>
+          </h6>
           <p class="card-text">{{ repo.description }}</p>
-          <a
-            [routerLink]="['issues', repo.owner, repo.name]"
-            class="btn btn-primary"
-            >Issues</a
-          >
+        </div>
+        <div class="card-footer bottom">
+          <div class="counts">
+            <span class="badge badge-primary">Open issues: {{repo.open_issues_count}}</span>
+            <span class="badge badge-secondary">Forks: {{repo.forks_count}}</span>
+            <span class="badge badge-success">Watchers: {{repo.watchers_count}}</span>
+            <span class="badge badge-info">Stargazers: {{repo.stargazers_count}}</span>
+            <span *ngIf="repo.license !== null" class="badge badge-light">{{repo.license.name}}</span>
+          </div>
+          <div class="links">
+            <a [routerLink]="['issues', repo.owner.login, repo.name]" class="btn btn-primary">Issues</a>
+            <!-- <a class="nav-link" href="{{repo.html_url}}">{{repo.html_url}}</a> -->
+          </div>
         </div>
       </div>
     </div>

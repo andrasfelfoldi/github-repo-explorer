@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SharedDataService } from "src/app/services/shared-data/shared-data.service";
 import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: "app-navbar",
@@ -10,7 +11,9 @@ import { Router } from '@angular/router';
 export class NavbarComponent implements OnInit {
   searchTerm: string = "";
 
-  constructor(private sharedDataService: SharedDataService, private router: Router) { }
+  constructor(private sharedDataService: SharedDataService, private router: Router, private route: ActivatedRoute) {
+    this.searchTerm = this.route.snapshot.paramMap.get("repoName");
+  }
 
   ngOnInit() { }
 

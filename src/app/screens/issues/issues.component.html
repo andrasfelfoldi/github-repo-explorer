@@ -1,20 +1,16 @@
+<div *ngIf="issues.length === 0 && sharedDataService.searchTerm !== '' && !loading">
+  <app-zero-matches></app-zero-matches>
+</div>
 <div class="container">
   <div *ngIf="loading" class="loading-container">
     <div class="spinner-border text-primary" role="status">
       <span class="sr-only">Loading...</span>
     </div>
   </div>
-  <div
-    *ngFor="let issue of issues"
-    class="card border"
-    [class.border-success]="issue.state === 'open'"
-    [class.border-danger]="issue.state === 'closed'"
-  >
-    <div
-      class="card-header bg-success text-light"
-      [class.bg-danger.text-light]="issue.state === 'closed'"
-    >
-      {{ issue.title }}
+  <div *ngFor="let issue of issues" class="card border" [class.border-success]="issue.state === 'open'"
+    [class.border-danger]="issue.state === 'closed'">
+    <div class="card-header bg-success text-light" [class.bg-danger.text-light]="issue.state === 'closed'">
+      {{issue.state | titlecase}} – {{ issue.title }}
     </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">

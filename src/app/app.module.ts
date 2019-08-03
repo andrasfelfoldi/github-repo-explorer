@@ -11,6 +11,8 @@ import { HomeComponent } from "./screens/home/home.component";
 import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { IssuesComponent } from "./screens/issues/issues.component";
+import { NotFound404Component } from './screens/not-found404/not-found404.component';
+import { ZeroMatchesComponent } from './components/zero-matches/zero-matches.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { IssuesComponent } from "./screens/issues/issues.component";
     HomeComponent,
     NavbarComponent,
     FooterComponent,
-    IssuesComponent
+    IssuesComponent,
+    NotFound404Component,
+    ZeroMatchesComponent
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule, FormsModule],
   providers: [],
