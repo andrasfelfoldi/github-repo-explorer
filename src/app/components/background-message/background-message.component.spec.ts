@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ZeroMatchesComponent } from './zero-matches.component';
+import { BackgroundMessageComponent } from './background-message.component';
 
-describe('ZeroMatchesComponent', () => {
-  let component: ZeroMatchesComponent;
-  let fixture: ComponentFixture<ZeroMatchesComponent>;
+describe('BackgroundMessageComponent', () => {
+  let component: BackgroundMessageComponent;
+  let fixture: ComponentFixture<BackgroundMessageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ZeroMatchesComponent ]
+      declarations: [ BackgroundMessageComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ZeroMatchesComponent);
+    fixture = TestBed.createComponent(BackgroundMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

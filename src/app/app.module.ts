@@ -12,8 +12,7 @@ import { NavbarComponent } from "./components/navbar/navbar.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { IssuesComponent } from "./screens/issues/issues.component";
 import { NotFound404Component } from './screens/not-found404/not-found404.component';
-import { ZeroMatchesComponent } from './components/zero-matches/zero-matches.component';
-import { NoSearchComponent } from './components/no-search/no-search.component';
+import { BackgroundMessageComponent } from './components/background-message/background-message.component';
 
 @NgModule({
   declarations: [
@@ -23,8 +22,7 @@ import { NoSearchComponent } from './components/no-search/no-search.component';
     FooterComponent,
     IssuesComponent,
     NotFound404Component,
-    ZeroMatchesComponent,
-    NoSearchComponent
+    BackgroundMessageComponent
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule, FormsModule],
   providers: [],
