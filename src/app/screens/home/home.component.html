@@ -1,6 +1,12 @@
+<!-- Content for when the user did not search for anything yet -->
+<div *ngIf="sharedDataService.searchTerm === ''">
+  <app-no-search></app-no-search>
+</div>
+<!-- Content for not getting any matches for the search -->
 <div *ngIf="repos.length === 0 && sharedDataService.searchTerm !== '' && !loading">
   <app-zero-matches></app-zero-matches>
 </div>
+<!-- Content otherwise -->
 <div class="container">
   <div *ngIf="loading" class="loading-container">
     <div class="spinner-border text-primary" role="status">
@@ -28,7 +34,6 @@
           </div>
           <div class="links">
             <a [routerLink]="['issues', repo.owner.login, repo.name]" class="btn btn-primary">Issues</a>
-            <!-- <a class="nav-link" href="{{repo.html_url}}">{{repo.html_url}}</a> -->
           </div>
         </div>
       </div>

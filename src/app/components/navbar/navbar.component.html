@@ -14,7 +14,7 @@
       </ul>
       <form class="form-inline my-2 my-lg-0">
         <input type="search" class="form-control mr-sm-2" placeholder="Search repository" aria-label="Search repository"
-          aria-describedby="button-addon2" [(ngModel)]="searchTerm" name="search" />
+          aria-describedby="button-addon2" [(ngModel)]="searchTerm" name="search" (keyup.enter)="onSearch()" />
         <div class="input-group-append">
           <button class="btn btn-light" type="button" id="button-addon2" (click)="onSearch()">
             Search

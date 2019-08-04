@@ -12,11 +12,17 @@
     <div class="card-header bg-success text-light" [class.bg-danger.text-light]="issue.state === 'closed'">
       {{issue.state | titlecase}} &ndash; {{ issue.title }}
     </div>
+    <div class="card-header text-dark">
+      <h6 class="card-subtitle mb-1 mt-1 text-muted">
+        <a class="" href="{{issue.html_url}}">{{issue.html_url}}</a>
+      </h6>
+    </div>
     <div class="card-body">
       <blockquote class="blockquote mb-0">
         <p>{{ issue.body }}</p>
         <footer class="blockquote-footer">
-          Created by <cite title="Source Title">{{ issue.user.login }}</cite>
+          Created by <cite title="Source Title"><a class=""
+              href="{{issue.user.html_url}}">{{ issue.user.login }}</a></cite> at {{issue.created_at | date:'medium'}}
         </footer>
       </blockquote>
     </div>
