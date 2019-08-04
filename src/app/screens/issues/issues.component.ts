@@ -22,6 +22,10 @@ export class IssuesComponent implements OnInit {
   ) {
     this.owner = this.route.snapshot.paramMap.get("owner");
     this.repoName = this.route.snapshot.paramMap.get("repoName");
+
+    // This line sets the current search query param in the shared data service.
+    // This way, non-routed components can access the route parameters
+    // For example, the search field in the navbar when reloading the page with query params in the url
     this.sharedDataService.search(this.repoName);
   }
 

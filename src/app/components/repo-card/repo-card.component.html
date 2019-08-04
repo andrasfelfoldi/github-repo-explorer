@@ -1,0 +1,25 @@
+<div class="card" style="height: 100%">
+    <div class="card-body">
+        <h5 class="card-title">{{ repo.name }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ repo.owner.login }}</h6>
+        <h6 class="card-subtitle mb-2 text-muted">
+            <a class="" href="{{repo.html_url}}">{{repo.html_url}}</a>
+        </h6>
+        <p class="card-text">{{ repo.description }}</p>
+    </div>
+    <div class="card-footer bottom">
+        <div *ngIf="repo.open_issues_count || repo.forks_count || repo.stargazers_count" class="chart">
+            <div id="{{repo.owner.login}}-{{repo.name}}"></div>
+        </div>
+        <div class="counts">
+            <span class="badge badge-primary">Open issues: {{repo.open_issues_count}}</span>
+            <span class="badge badge-secondary">Forks: {{repo.forks_count}}</span>
+            <!-- <span class="badge badge-success">Watchers: {{repo.watchers_count}}</span> -->
+            <span class="badge badge-info">Stargazers: {{repo.stargazers_count}}</span>
+            <span *ngIf="repo.license !== null" class="badge badge-light">{{repo.license.name}}</span>
+        </div>
+        <div class="links">
+            <a [routerLink]="['issues', repo.owner.login, repo.name]" class="btn btn-primary">Issues</a>
+        </div>
+    </div>
+</div>

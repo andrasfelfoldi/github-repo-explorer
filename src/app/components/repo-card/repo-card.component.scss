@@ -1,0 +1,21 @@
+.bottom {
+
+    .chart{
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .counts{
+      display: flex;
+      flex-wrap: wrap;
+      span{
+        margin-right: 10px;
+        margin-bottom: 10px;
+      }
+    }
+    
+    a{
+      display: inline;
+    }
+  }
