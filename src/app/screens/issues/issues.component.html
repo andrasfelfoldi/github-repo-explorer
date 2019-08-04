@@ -1,5 +1,7 @@
 <div *ngIf="issues.length === 0 && sharedDataService.searchTerm !== '' && !loading">
-  <app-zero-matches></app-zero-matches>
+  <app-background-message topMessage="It seems, that this repository has no issues to display."
+    bottomMessage="You can always check out another repository." iconName="im-git">
+  </app-background-message>
 </div>
 <div class="container">
   <div *ngIf="loading" class="loading-container">

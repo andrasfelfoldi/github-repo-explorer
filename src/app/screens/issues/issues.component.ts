@@ -13,7 +13,7 @@ export class IssuesComponent implements OnInit {
   issues: Issue[] = [];
   owner: string;
   repoName: string;
-  loading: boolean = true;
+  loading: boolean = false;
 
   constructor(
     private gitHubService: GitHubService,
@@ -22,6 +22,7 @@ export class IssuesComponent implements OnInit {
   ) {
     this.owner = this.route.snapshot.paramMap.get("owner");
     this.repoName = this.route.snapshot.paramMap.get("repoName");
+    this.sharedDataService.search(this.repoName);
   }
 
   ngOnInit() {

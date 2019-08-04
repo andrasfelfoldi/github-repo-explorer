@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { SharedDataService } from "src/app/services/shared-data/shared-data.service";
 import { Router } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: "app-navbar",
@@ -11,11 +11,22 @@ import { ActivatedRoute } from '@angular/router';
 export class NavbarComponent implements OnInit {
   searchTerm: string = "";
 
-  constructor(private sharedDataService: SharedDataService, private router: Router, private route: ActivatedRoute) {
-    this.searchTerm = this.route.snapshot.paramMap.get("repoName");
+  searchTermChangedSubscription: Subscription;
+
+  constructor(private sharedDataService: SharedDataService, private router: Router) {
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
+      (newSearchTerm: string) => {
+        this.searchTerm = newSearchTerm;
+      }
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.searchTermChangedSubscription.unsubscribe();
+  }
 
   onSearch(): void {
     this.router.navigateByUrl("/");
