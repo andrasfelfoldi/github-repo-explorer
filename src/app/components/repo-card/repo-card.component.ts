@@ -1,12 +1,13 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Repository } from '../../models/Repository';
 // import {
-//   trigger,
+// trigger,
 //   state,
 //   style,
 //   animate,
 //   transition
 // } from '@angular/animations';
+import { ChartData } from '../../models/ChartData';
 
 @Component({
   selector: 'app-repo-card',
@@ -19,16 +20,16 @@ import { Repository } from '../../models/Repository';
 export class RepoCardComponent implements OnInit {
 
   @Input() repo: Repository;
-  chartData: object;
-  chartColorDomains: string[];
-  chartColors: string[];
+  chartData: ChartData;
 
   constructor() { }
 
   ngOnInit() {
-    this.chartData = { Issues: this.repo.open_issues_count, Forks: this.repo.forks_count, Stargazers: this.repo.stargazers_count };
-    this.chartColorDomains = ['Issues', 'Forks', 'Stargazers'];
-    this.chartColors = ['#007bff', '#6c757d', '#17a2b8'];
+    let values = { Issues: this.repo.open_issues_count, Forks: this.repo.forks_count, Stargazers: this.repo.stargazers_count };
+    let chartColorDomains = ['Issues', 'Forks', 'Stargazers'];
+    let chartColors = ['#007bff', '#6c757d', '#17a2b8'];
+
+    this.chartData = new ChartData(values, chartColorDomains, chartColors);
   }
 
 }

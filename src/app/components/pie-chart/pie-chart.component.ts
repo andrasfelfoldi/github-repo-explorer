@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import * as d3 from "d3";
+import { ChartData } from '../../models/ChartData';
 
 @Component({
   selector: 'app-pie-chart',
@@ -9,9 +10,7 @@ import * as d3 from "d3";
 export class PieChartComponent implements OnInit {
 
   @Input() idSelector: string;
-  @Input() data: object;
-  @Input() colorDomains: string[];
-  @Input() colors: string[];
+  @Input() chartData: ChartData;
   @Input() isDonut: boolean = false;
   @Input() width: number = 200;
   @Input() height: number = 200;
@@ -42,15 +41,15 @@ export class PieChartComponent implements OnInit {
 
     // set the color scale
     var color = d3.scaleOrdinal()
-      .domain(this.colorDomains)
-      .range(this.colors);
+      .domain(this.chartData.colorDomains)
+      .range(this.chartData.colors);
 
     // Compute the position of each group on the pie:
     var pie = d3.pie()
       .sort(null) // Do not sort group by size
       .value(function (d) { return d.value; });
 
-    var data_ready = pie(d3.entries(this.data))
+    var data_ready = pie(d3.entries(this.chartData.values))
 
     // The arc generator
     var arc = d3.arc()
