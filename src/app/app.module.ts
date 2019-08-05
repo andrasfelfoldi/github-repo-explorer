@@ -1,4 +1,5 @@
 import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from "@angular/core";
 import { HttpClientModule } from "@angular/common/http";
 
@@ -26,7 +27,7 @@ import { RepoCardComponent } from './components/repo-card/repo-card.component';
     BackgroundMessageComponent,
     RepoCardComponent
   ],
-  imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule, FormsModule],
+  imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, NgbModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,11 +1,21 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Repository } from '../../models/Repository';
+import {
+  trigger,
+  state,
+  style,
+  animate,
+  transition
+} from '@angular/animations';
 import * as d3 from "d3";
 
 @Component({
   selector: 'app-repo-card',
   templateUrl: './repo-card.component.html',
-  styleUrls: ['./repo-card.component.scss']
+  styleUrls: ['./repo-card.component.scss'],
+  animations: [
+
+  ]
 })
 export class RepoCardComponent implements OnInit {
 
