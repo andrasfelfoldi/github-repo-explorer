@@ -9,6 +9,10 @@
       <span class="sr-only">Loading...</span>
     </div>
   </div>
+  <div *ngIf="issues.length > 0" class="chart">
+    <app-pie-chart idSelector="issueChart" [chartData]="chartData" [isDonut]="false">
+    </app-pie-chart>
+  </div>
   <div *ngFor="let issue of issues" class="card border" [class.border-success]="issue.state === 'open'"
     [class.border-danger]="issue.state === 'closed'">
     <div class="card-header bg-success text-light" [class.bg-danger.text-light]="issue.state === 'closed'">

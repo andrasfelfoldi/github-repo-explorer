@@ -16,6 +16,7 @@ import { NotFound404Component } from './screens/not-found404/not-found404.compon
 import { BackgroundMessageComponent } from './components/background-message/background-message.component';
 import { RepoCardComponent } from './components/repo-card/repo-card.component';
 import { PieChartComponent } from './components/pie-chart/pie-chart.component';
+import { IssueCardComponent } from './components/issue-card/issue-card.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { PieChartComponent } from './components/pie-chart/pie-chart.component';
     NotFound404Component,
     BackgroundMessageComponent,
     RepoCardComponent,
-    PieChartComponent
+    PieChartComponent,
+    IssueCardComponent
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule, NgbModule, HttpClientModule, FormsModule],
   providers: [],

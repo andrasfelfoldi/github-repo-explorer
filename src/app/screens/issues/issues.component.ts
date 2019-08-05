@@ -3,6 +3,7 @@ import { GitHubService } from "../../services/git-hub/git-hub.service";
 import { Issue } from "src/app/models/Issue";
 import { ActivatedRoute } from "@angular/router";
 import { SharedDataService } from "../../services/shared-data/shared-data.service";
+import { ChartData } from '../../models/ChartData';
 
 @Component({
   selector: "app-issues",
@@ -10,10 +11,14 @@ import { SharedDataService } from "../../services/shared-data/shared-data.servic
   styleUrls: ["./issues.component.scss"]
 })
 export class IssuesComponent implements OnInit {
+
   issues: Issue[] = [];
   owner: string;
   repoName: string;
   loading: boolean = false;
+  openCount: number = 0;
+  closedCount: number = 0;
+  chartData: ChartData;
 
   constructor(
     private gitHubService: GitHubService,
@@ -44,8 +49,11 @@ export class IssuesComponent implements OnInit {
         .getIssuesForRepository(this.owner, this.repoName)
         .subscribe((data: any) => {
           data.items.forEach(issue => {
+            issue.state === "open" ? this.openCount++ : this.closedCount++;
             this.issues.push(issue);
           });
+
+          this.initChartData();
 
           this.sharedDataService.issues = this.issues;
           this.sharedDataService.repoName = this.repoName;
@@ -54,7 +62,21 @@ export class IssuesComponent implements OnInit {
         });
     } else {
       this.issues = this.sharedDataService.issues;
+
+      this.issues.forEach(issue => {
+        issue.state === "open" ? this.openCount++ : this.closedCount++;
+      });
+      this.initChartData();
+
       this.loading = false;
     }
+  }
+
+  initChartData(): void {
+    let values = { Open: this.openCount, Closed: this.closedCount };
+    let chartColorDomains = ['Open', 'Closed'];
+    let chartColors = ['#28a745', '#dc3545'];
+
+    this.chartData = new ChartData(values, chartColorDomains, chartColors);
   }
 }
