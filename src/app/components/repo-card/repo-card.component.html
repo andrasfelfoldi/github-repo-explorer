@@ -9,12 +9,13 @@
     </div>
     <div class="card-footer bottom">
         <div *ngIf="repo.open_issues_count || repo.forks_count || repo.stargazers_count" class="chart">
-            <div id="{{repo.owner.login}}-{{repo.name}}"></div>
+            <app-pie-chart idSelector="{{repo.owner.login}}-{{repo.name}}" [data]="chartData"
+                [colorDomains]="chartColorDomains" [colors]="chartColors" isDonut="true">
+            </app-pie-chart>
         </div>
         <div class="counts">
             <span class="badge badge-primary">Open issues: {{repo.open_issues_count}}</span>
             <span class="badge badge-secondary">Forks: {{repo.forks_count}}</span>
-            <!-- <span class="badge badge-success">Watchers: {{repo.watchers_count}}</span> -->
             <span class="badge badge-info">Stargazers: {{repo.stargazers_count}}</span>
             <span *ngIf="repo.license !== null" class="badge badge-light">{{repo.license.name}}</span>
         </div>
