@@ -9,7 +9,7 @@
     </div>
     <div class="card-footer bottom">
         <div *ngIf="repo.open_issues_count || repo.forks_count || repo.stargazers_count" class="chart">
-            <app-pie-chart idSelector="{{repo.owner.login}}-{{repo.name}}" [chartData]="chartData" [isDonut]="true">
+            <app-pie-chart idSelector="repo-{{repo.id}}" [chartData]="chartData" [isDonut]="true">
             </app-pie-chart>
         </div>
         <!-- <div class="counts">
