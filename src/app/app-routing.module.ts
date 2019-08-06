@@ -8,6 +8,7 @@ import { NotFound404Component } from './screens/not-found404/not-found404.compon
 const routes: Routes = [
   { path: "repositories/:searchTerm/issues/:owner/:repoName", component: IssuesComponent },
   { path: "repositories/:searchTerm", component: HomeComponent },
+  { path: "repositories", pathMatch: 'full', redirectTo: '' },
   { path: "", component: HomeComponent },
   { path: "**", component: NotFound404Component }
 ];

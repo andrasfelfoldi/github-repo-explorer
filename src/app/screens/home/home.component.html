@@ -5,13 +5,13 @@
   </app-background-message>
 </div>
 <!-- Content for when the user did not search for anything yet -->
-<div *ngIf="sharedDataService.searchTerm === ''">
+<div *ngIf="!sharedDataService.searchTerm">
   <app-background-message topMessage="You haven't searched for anything yet."
     bottomMessage="Search for something using the search field above!" iconName="im-magnifier">
   </app-background-message>
 </div>
 <!-- Content for not getting any matches for the search -->
-<div *ngIf="repos.length === 0 && sharedDataService.searchTerm !== '' && !loading">
+<div *ngIf="repos.length === 0 && sharedDataService.searchTerm && !loading">
   <app-background-message topMessage="Alas, nothing is found."
     bottomMessage="Perhaps, you should try checking out a different repository." iconName="im-frown-o">
   </app-background-message>

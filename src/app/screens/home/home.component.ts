@@ -49,7 +49,7 @@ export class HomeComponent implements OnInit {
 
   getRepositories() {
     if (
-      this.sharedDataService.searchTerm !== "" && (
+      this.sharedDataService.searchTerm && (
         this.sharedDataService.searchTerm !== this.sharedDataService.prevSearchTerm ||
         this.sharedDataService.repos.length === 0 ||
         this.isError === true)
@@ -71,7 +71,7 @@ export class HomeComponent implements OnInit {
     } else {
       this.isError = false;
       this.loading = false;
-      this.repos = this.sharedDataService.repos;
+      this.repos = this.sharedDataService.searchTerm ? this.sharedDataService.repos : [];
     }
   }
 
