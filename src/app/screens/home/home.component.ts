@@ -4,6 +4,7 @@ import { Repository } from "src/app/models/Repository";
 import { SharedDataService } from "src/app/services/shared-data/shared-data.service";
 import { Subscriber, Subscription } from "rxjs";
 import { HttpErrorResponse } from '@angular/common/http';
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-home",
@@ -15,18 +16,23 @@ export class HomeComponent implements OnInit {
   loading: boolean = false;
   // noReposFound: boolean = false;
   isError: boolean = false;
-
+  searchTerm: string;
 
   searchTermChangedSubscription: Subscription;
 
   constructor(
     private gitHubService: GitHubService,
+    private route: ActivatedRoute,
     private sharedDataService: SharedDataService
-  ) { }
+  ) {
+    this.searchTerm = this.route.snapshot.paramMap.get("searchTerm");
+
+    this.sharedDataService.search(this.searchTerm);
+  }
 
   ngOnInit() {
     // this.searchTerm = this.sharedDataService.searchTerm
-    this.repos = this.sharedDataService.repos;
+    // this.repos = this.sharedDataService.repos;
 
     this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
       (newSearchTerm: string) => {
