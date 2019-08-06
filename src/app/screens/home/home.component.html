@@ -1,31 +1,28 @@
-<!-- Content for when there is an error while fetching the repositories -->
-<div *ngIf="isError">
-  <app-background-message topMessage="Sorry, we failed to retrieve the repositories you are looking for."
+<div *ngIf="!loading" [ngSwitch]="message">
+  <!-- Content for when there is an error while fetching the repositories -->
+  <app-background-message *ngSwitchCase="'error'"
+    topMessage="Sorry, we failed to retrieve the repositories you are looking for."
     bottomMessage="Please, check your internet connection and try again." iconName="im-frown-o">
   </app-background-message>
-</div>
-<!-- Content for when the user did not search for anything yet -->
-<div *ngIf="!sharedDataService.searchTerm">
-  <app-background-message topMessage="You haven't searched for anything yet."
+  <!-- Content for when the user did not search for anything yet -->
+  <app-background-message *ngSwitchCase="'no-search'" topMessage="You haven't searched for anything yet."
     bottomMessage="Search for something using the search field above!" iconName="im-magnifier">
   </app-background-message>
-</div>
-<!-- Content for not getting any matches for the search -->
-<div *ngIf="repos.length === 0 && sharedDataService.searchTerm && !loading">
-  <app-background-message topMessage="Alas, nothing is found."
+  <!-- Content for not getting any matches for the search -->
+  <app-background-message *ngSwitchCase="'no-match'" topMessage="Alas, nothing is found."
     bottomMessage="Perhaps, you should try checking out a different repository." iconName="im-frown-o">
   </app-background-message>
-</div>
-<!-- Content otherwise -->
-<div class="container">
-  <div *ngIf="loading" class="loading-container">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only">Loading...</span>
+  <!-- Content otherwise -->
+  <div *ngSwitchDefault class="container">
+    <div class="row">
+      <div *ngFor="let repo of repos" class="col-sm-12 col-md-6 mt-5">
+        <app-repo-card [repo]="repo"></app-repo-card>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div *ngFor="let repo of repos" class="col-sm-12 col-md-6 mt-5">
-      <app-repo-card [repo]="repo"></app-repo-card>
-    </div>
+</div>
+<div *ngIf="loading" class="loading-container">
+  <div class="spinner-border text-primary" role="status">
+    <span class="sr-only">Loading...</span>
   </div>
 </div>

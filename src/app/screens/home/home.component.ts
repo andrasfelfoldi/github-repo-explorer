@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { GitHubService } from "../../services/git-hub/git-hub.service";
 import { Repository } from "src/app/models/Repository";
 import { SharedDataService } from "src/app/services/shared-data/shared-data.service";
-import { Subscriber, Subscription } from "rxjs";
+import { Subscription } from "rxjs";
 import { HttpErrorResponse } from '@angular/common/http';
 import { ActivatedRoute } from "@angular/router";
 
@@ -14,9 +14,9 @@ import { ActivatedRoute } from "@angular/router";
 export class HomeComponent implements OnInit {
   repos: Repository[] = [];
   loading: boolean = false;
-  // noReposFound: boolean = false;
   isError: boolean = false;
   searchTerm: string;
+  message: string;
 
   searchTermChangedSubscription: Subscription;
 
@@ -66,16 +66,34 @@ export class HomeComponent implements OnInit {
 
           this.loading = false;
           this.sharedDataService.repos = this.repos;
+          this.setBackgroundMessage();
         },
           error => this.handleError(error));
     } else {
       this.isError = false;
       this.loading = false;
       this.repos = this.sharedDataService.searchTerm ? this.sharedDataService.repos : [];
+      this.setBackgroundMessage();
     }
   }
 
   private handleError(error: HttpErrorResponse) {
     this.isError = true;
+    this.loading = false;
+    this.setBackgroundMessage("error");
   };
+
+  private setBackgroundMessage(message?: string): void {
+    if (message) {
+      this.message = message;
+    } else if (!this.sharedDataService.searchTerm) {
+      this.message = "no-search";
+    } else if (this.isError) {
+      this.message = "error";
+    } else if (this.repos.length === 0 && this.sharedDataService.searchTerm && !this.loading) {
+      this.message = "no-match";
+    } else {
+      this.message = "none";
+    }
+  }
 }
