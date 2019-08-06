@@ -1,3 +1,9 @@
+<!-- Content for when there is an error while fetching the repositories -->
+<div *ngIf="isError">
+  <app-background-message topMessage="Sorry, we failed to retrieve the repositories you are looking for."
+    bottomMessage="Please, check your internet connection and try again." iconName="im-frown-o">
+  </app-background-message>
+</div>
 <!-- Content for when the user did not search for anything yet -->
 <div *ngIf="sharedDataService.searchTerm === ''">
   <app-background-message topMessage="You haven't searched for anything yet."

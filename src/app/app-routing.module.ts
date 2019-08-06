@@ -6,8 +6,9 @@ import { IssuesComponent } from "./screens/issues/issues.component";
 import { NotFound404Component } from './screens/not-found404/not-found404.component';
 
 const routes: Routes = [
+  { path: "repositories/:searchTerm/issues/:owner/:repoName", component: IssuesComponent },
+  { path: "repositories/:searchTerm", component: HomeComponent },
   { path: "", component: HomeComponent },
-  { path: "issues/:owner/:repoName", component: IssuesComponent },
   { path: "**", component: NotFound404Component }
 ];
 

@@ -4,6 +4,7 @@ import { Issue } from "src/app/models/Issue";
 import { ActivatedRoute } from "@angular/router";
 import { SharedDataService } from "../../services/shared-data/shared-data.service";
 import { ChartData } from '../../models/ChartData';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: "app-issues",
@@ -19,6 +20,7 @@ export class IssuesComponent implements OnInit {
   openCount: number = 0;
   closedCount: number = 0;
   chartData: ChartData;
+  isError: boolean = false;
 
   constructor(
     private gitHubService: GitHubService,
@@ -43,7 +45,8 @@ export class IssuesComponent implements OnInit {
     if (
       this.repoName !== this.sharedDataService.repoName ||
       this.owner !== this.sharedDataService.ownerName ||
-      this.sharedDataService.issues.length === 0
+      this.sharedDataService.issues.length === 0 ||
+      this.isError === true
     ) {
       this.gitHubService
         .getIssuesForRepository(this.owner, this.repoName)
@@ -58,8 +61,10 @@ export class IssuesComponent implements OnInit {
           this.sharedDataService.issues = this.issues;
           this.sharedDataService.repoName = this.repoName;
           this.sharedDataService.ownerName = this.owner;
+          this.isError = false;
           this.loading = false;
-        });
+        },
+          error => this.handleError(error));
     } else {
       this.issues = this.sharedDataService.issues;
 
@@ -68,6 +73,7 @@ export class IssuesComponent implements OnInit {
       });
       this.initChartData();
 
+      this.isError = false;
       this.loading = false;
     }
   }
@@ -79,4 +85,8 @@ export class IssuesComponent implements OnInit {
 
     this.chartData = new ChartData(values, chartColorDomains, chartColors);
   }
+
+  private handleError(error: HttpErrorResponse) {
+    this.isError = true;
+  };
 }

@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
   }
 
   onSearch(): void {
-    this.router.navigateByUrl("/");
+    this.router.navigateByUrl(`/repositories/${this.searchTerm}`);
     this.sharedDataService.search(this.searchTerm);
   }
 }
