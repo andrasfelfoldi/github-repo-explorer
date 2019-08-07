@@ -9,7 +9,7 @@ class FakeHttpClient {
   get() { return new Observable }
 }
 
-describe("GitHubServiceService", () => {
+describe("GitHubService", () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientModule],
