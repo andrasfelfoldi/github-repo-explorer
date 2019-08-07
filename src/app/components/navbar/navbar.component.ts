@@ -21,13 +21,7 @@ export class NavbarComponent implements OnInit {
     );
   }
 
-  ngOnInit() {
-    // this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
-    //   (newSearchTerm: string) => {
-    //     this.searchTerm = newSearchTerm;
-    //   }
-    // );
-  }
+  ngOnInit() { }
 
   ngOnDestroy(): void {
     this.searchTermChangedSubscription.unsubscribe();

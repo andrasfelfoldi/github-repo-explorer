@@ -31,12 +31,9 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.searchTerm = this.sharedDataService.searchTerm
-    // this.repos = this.sharedDataService.repos;
 
     this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
       (newSearchTerm: string) => {
-        // this.searchTerm = newSearchTerm;
         this.getRepositories();
       }
     );
