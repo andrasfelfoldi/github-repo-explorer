@@ -25,7 +25,7 @@ export class IssuesComponent implements OnInit {
   constructor(
     private gitHubService: GitHubService,
     private route: ActivatedRoute,
-    private sharedDataService: SharedDataService
+    public sharedDataService: SharedDataService
   ) {
     this.owner = this.route.snapshot.paramMap.get("owner");
     this.repoName = this.route.snapshot.paramMap.get("repoName");

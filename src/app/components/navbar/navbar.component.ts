@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   searchTermChangedSubscription: Subscription;
 
-  constructor(private sharedDataService: SharedDataService, private router: Router) {
+  constructor(public sharedDataService: SharedDataService, public router: Router) {
     this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
       (newSearchTerm: string) => {
         this.searchTerm = newSearchTerm;
