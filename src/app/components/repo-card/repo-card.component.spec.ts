@@ -1,9 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RepoCardComponent } from './repo-card.component';
-import { RouterModule } from '@angular/router';
 import { PieChartComponent } from '../pie-chart/pie-chart.component';
 import { Component } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 describe('RepoCardComponent', () => {
   let hostComponent: TestHostComponent;
   let component: RepoCardComponent;
@@ -11,7 +11,7 @@ describe('RepoCardComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [RouterModule.forRoot([])],
+      imports: [RouterTestingModule],
       declarations: [RepoCardComponent, TestHostComponent, PieChartComponent],
       providers: [
 
