@@ -4,7 +4,7 @@ import { PieChartComponent } from './pie-chart.component';
 import { Component } from '@angular/core';
 import { ChartData } from 'src/app/models/ChartData';
 
-fdescribe('PieChartComponent', () => {
+describe('PieChartComponent', () => {
   let hostComponent: TestHostComponent;
   let hostFixture: ComponentFixture<TestHostComponent>;
   let component: PieChartComponent;

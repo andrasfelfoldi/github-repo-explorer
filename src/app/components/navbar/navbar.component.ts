@@ -14,14 +14,19 @@ export class NavbarComponent implements OnInit {
   searchTermChangedSubscription: Subscription;
 
   constructor(private sharedDataService: SharedDataService, private router: Router) {
-  }
-
-  ngOnInit() {
     this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
       (newSearchTerm: string) => {
         this.searchTerm = newSearchTerm;
       }
     );
+  }
+
+  ngOnInit() {
+    // this.searchTermChangedSubscription = this.sharedDataService.searchTermChanged.subscribe(
+    //   (newSearchTerm: string) => {
+    //     this.searchTerm = newSearchTerm;
+    //   }
+    // );
   }
 
   ngOnDestroy(): void {
