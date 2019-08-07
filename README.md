@@ -1,5 +1,7 @@
 # GithubRepoExplorer
 
+**Check out the [live demo](https://github-repo-explorer.firebaseapp.com/) app at [https://github-repo-explorer.firebaseapp.com](https://github-repo-explorer.firebaseapp.com/)!**
+
 This is an example project that lets you search for GitHub repositories to get some information about them and check out their issues.
 
 ## Initial Setup
