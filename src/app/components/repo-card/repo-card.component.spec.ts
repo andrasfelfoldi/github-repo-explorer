@@ -4,10 +4,12 @@ import { RepoCardComponent } from './repo-card.component';
 import { PieChartComponent } from '../pie-chart/pie-chart.component';
 import { Component } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+
 describe('RepoCardComponent', () => {
   let hostComponent: TestHostComponent;
-  let component: RepoCardComponent;
   let hostFixture: ComponentFixture<TestHostComponent>;
+  let component: RepoCardComponent;
+  let nativeElement: HTMLElement;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -23,13 +25,28 @@ describe('RepoCardComponent', () => {
   beforeEach(() => {
     hostFixture = TestBed.createComponent(TestHostComponent);
     hostComponent = hostFixture.componentInstance;
+
     component = hostFixture.debugElement.children[0].componentInstance;
+    nativeElement = hostFixture.debugElement.children[0].nativeElement;
+
     hostFixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should display a chart', () => {
+    let pieChart = nativeElement.querySelector("app-pie-chart");
+    expect(pieChart).toBeTruthy();
+  });
+
+  it('should display the license', () => {
+    let license = nativeElement.querySelector(".license");
+    expect(license).toBeTruthy();
+  });
+
+
 });
 
 const fakeRepo = {

@@ -12,15 +12,9 @@
             <app-pie-chart idSelector="repo-{{repo.id}}" [chartData]="chartData" [isDonut]="true">
             </app-pie-chart>
         </div>
-        <!-- <div class="counts">
-            <span class="badge badge-primary">Open issues: {{repo.open_issues_count}}</span>
-            <span class="badge badge-secondary">Forks: {{repo.forks_count}}</span>
-            <span class="badge badge-info">Stargazers: {{repo.stargazers_count}}</span>
-            <span *ngIf="repo.license !== null" class="badge badge-light">{{repo.license.name}}</span>
-        </div> -->
         <div class="footer-bottom">
             <a [routerLink]="['issues', repo.owner.login, repo.name]" class="btn btn-primary">Issues</a>
-            <span *ngIf="repo.license !== null" class="badge badge-light">{{repo.license.name}}</span>
+            <span *ngIf="repo.license !== null" class="badge badge-light license">{{repo.license.name}}</span>
         </div>
     </div>
 </div>
