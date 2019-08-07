@@ -1,12 +1,5 @@
 import { Component, OnInit, Input, HostListener } from '@angular/core';
 import { Repository } from '../../models/Repository';
-// import {
-// trigger,
-//   state,
-//   style,
-//   animate,
-//   transition
-// } from '@angular/animations';
 import { ChartData } from '../../models/ChartData';
 
 @Component({
