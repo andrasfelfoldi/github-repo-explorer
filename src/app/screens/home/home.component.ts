@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   constructor(
     private gitHubService: GitHubService,
     private route: ActivatedRoute,
-    private sharedDataService: SharedDataService
+    public sharedDataService: SharedDataService
   ) {
     this.searchTerm = this.route.snapshot.paramMap.get("searchTerm");
 

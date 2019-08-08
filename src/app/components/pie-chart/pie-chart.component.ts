@@ -53,8 +53,8 @@ export class PieChartComponent implements OnInit {
 
     // The arc generator
     var arc = d3.arc()
-      .innerRadius(this.isDonut ? radius * 0.55 : 0)         // This is the size of the donut hole
-      .outerRadius(radius * 0.8)
+      .innerRadius(this.isDonut ? radius * 0.65 : 0)         // This is the size of the donut hole
+      .outerRadius(radius * 0.9)
 
     // Build the pie chart: Basically, each part of the pie is a path that we build using the arc function.
     svg
